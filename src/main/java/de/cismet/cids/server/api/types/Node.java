@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import de.cismet.cids.server.data.configkeys.Key;
+import de.cismet.cids.base.types.Key;
 
 /**
  * DOCUMENT ME!

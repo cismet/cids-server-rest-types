@@ -5,7 +5,7 @@
 *              ... and it just works.
 *
 ****************************************************/
-package de.cismet.cids.server.data.configkeys;
+package de.cismet.cids.base.types;
 
 /**
  * DOCUMENT ME!
