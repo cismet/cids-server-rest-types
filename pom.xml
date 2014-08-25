@@ -25,6 +25,7 @@
     
     <properties>
         <jersey.version>1.17.1</jersey.version>
+        <jackson.version>2.2.2</jackson.version>
     </properties>
     
     <prerequisites>
@@ -40,7 +41,6 @@
         <system>GitHub</system>
         <url>https://github.com/cismet/cids-server-rest-types/issues</url>
     </issueManagement>
-    
     <repositories>
         <repository>
             <id>cismet-repo</id>
@@ -80,6 +80,17 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.3m</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
     
