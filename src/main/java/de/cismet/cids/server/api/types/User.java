@@ -60,8 +60,7 @@ public class User {
      *
      * @param   authString  <code>String</code> of format 'username[@domain]'
      *
-     * @throws  java.lang.NullPointerException  DOCUMENT ME!
-     * @throws  IllegalArgumentException        DOCUMENT ME!
+     * @throws  IllegalArgumentException  DOCUMENT ME!
      */
     public User(final String authString) {
         if (authString.startsWith(BASIC_AUTH_PREFIX)) {
@@ -123,21 +122,36 @@ public class User {
         return u;
     }
 
+    /**
+     * DOCUMENT ME!
+     *
+     * @return  DOCUMENT ME!
+     */
     @SuppressWarnings("all")
     public String getUser() {
         return user;
     }
-    
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @return  DOCUMENT ME!
+     */
     @SuppressWarnings("all")
     public String getPassHash() {
         return passHash;
     }
 
+    /**
+     * DOCUMENT ME!
+     *
+     * @param  passHash  DOCUMENT ME!
+     */
     @SuppressWarnings("all")
     public void setPassHash(final String passHash) {
         this.passHash = passHash;
     }
-    
+
     /**
      * DOCUMENT ME!
      *
