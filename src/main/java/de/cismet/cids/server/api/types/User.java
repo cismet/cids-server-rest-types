@@ -60,7 +60,8 @@ public class User {
      *
      * @param   authString  <code>String</code> of format 'username[@domain]'
      *
-     * @throws  IllegalArgumentException  DOCUMENT ME!
+     * @throws  java.lang.NullPointerException  DOCUMENT ME!
+     * @throws  IllegalArgumentException        DOCUMENT ME!
      */
     public User(final String authString) {
         if (authString.startsWith(BASIC_AUTH_PREFIX)) {
