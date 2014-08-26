@@ -7,9 +7,9 @@
 ****************************************************/
 package de.cismet.cids.server.api.types;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
-import de.cismet.cids.base.types.Key;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * DOCUMENT ME!
@@ -18,12 +18,11 @@ import de.cismet.cids.base.types.Key;
  * @version  1.0
  */
 @XmlRootElement
-public class SearchParameter implements Key {
+public class SearchParameters {
 
     //~ Instance fields --------------------------------------------------------
 
-    private String key;
-    private String value;
+    private List<SearchParameter> list;
 
     //~ Methods ----------------------------------------------------------------
 
@@ -32,30 +31,16 @@ public class SearchParameter implements Key {
      *
      * @return  DOCUMENT ME!
      */
-    public String getValue() {
-        return value;
+    public List<SearchParameter> getList() {
+        return list;
     }
 
     /**
      * DOCUMENT ME!
      *
-     * @param  value  DOCUMENT ME!
+     * @param  list  DOCUMENT ME!
      */
-    public void setValue(final String value) {
-        this.value = value;
-    }
-
-    /**
-     * DOCUMENT ME!
-     *
-     * @param  key  DOCUMENT ME!
-     */
-    public void setKey(final String key) {
-        this.key = key;
-    }
-
-    @Override
-    public String getKey() {
-        return key;
+    public void setList(final List<SearchParameter> list) {
+        this.list = list;
     }
 }
