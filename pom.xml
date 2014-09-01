@@ -60,11 +60,6 @@
     
     <dependencies>
         <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-util-lookup</artifactId>
-            <version>RELEASE701</version>
-        </dependency>
-        <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-core</artifactId>
             <version>${jersey.version}</version>
