@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.jersey.core.util.Base64;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Data
 @Slf4j
+@EqualsAndHashCode(exclude = { "pass", "passHash", "userGroups", "validated" })
 public class User {
 
     //~ Static fields/initializers ---------------------------------------------
