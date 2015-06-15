@@ -19,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 
-import java.util.Collection;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlTransient;
@@ -36,14 +35,14 @@ public enum Type {
 
     //~ Enum constants ---------------------------------------------------------
 
-    BYTE(byte.class.getName(), true), SHORT(short.class.getName(), true), INT(int.class.getName(), true),
+    BYTE(byte.class.getName(), true), SHORT(short.class.getName(), true), INTEGER(int.class.getName(), true),
     FLOAT(float.class.getName(), true), LONG(long.class.getName(), true), DOUBLE(double.class.getName(), true),
     BOOLEAN(boolean.class.getName(), true), CHAR(char.class.getName(), true), STRING(String.class.getName(), true),
     DATE(Date.class.getName(), true), ENTITY("Sirius.server.middleware.types.MetaObject", false),
     ENTITY_REFERENCE("Sirius.server.middleware.types.LightweightMetaObject", false),
     ENTITY_INFO("Sirius.server.middleware.types.MetaClass", false), NODE("Sirius.server.middleware.types.Node", false),
-    JAVA_CLASS(Object.class.getName(), false), JAVA_COLLECTION(Collection.class.getName(), false),
-    JAVA_SERIALIZABLE(Serializable.class.getName(), false), UNDEFINED("UNDEFIEND", false);
+    JAVA_CLASS(Object.class.getName(), false), JAVA_SERIALIZABLE(Serializable.class.getName(), false),
+    UNDEFINED("UNDEFIEND", false);
 
     //~ Instance fields --------------------------------------------------------
 
@@ -75,7 +74,7 @@ public enum Type {
             return SHORT;
         } else if (javaClass.equals(int.class) || javaClass.equals(Integer.class)
                     || javaClass.equals(int[].class) || javaClass.equals(Integer[].class)) {
-            return INT;
+            return INTEGER;
         } else if (javaClass.equals(long.class) || javaClass.equals(Long.class)
                     || javaClass.equals(long[].class) || javaClass.equals(Long[].class)) {
             return LONG;
@@ -109,8 +108,6 @@ public enum Type {
                     || javaClass.getName().equals("Sirius.server.middleware.types.MetaObjectNode")
                     || javaClass.getName().equals("Sirius.server.middleware.types.MetaClassNode")) {
             return NODE;
-        } else if (Collection.class.isAssignableFrom(javaClass)) {
-            return JAVA_COLLECTION;
         } else {
             return JAVA_CLASS;
         }

@@ -18,12 +18,12 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 import de.cismet.cids.base.types.Key;
 import de.cismet.cids.base.types.Type;
-
-import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 
 /**
  * Provides name and Type information about an Search Parameter.
@@ -35,7 +35,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 @Data
 @NoArgsConstructor
 @JsonInclude(Include.NON_DEFAULT)
-public class SearchParameterInfo implements Key {
+public class SearchParameterInfo implements Key, Serializable {
 
     //~ Instance fields --------------------------------------------------------
 

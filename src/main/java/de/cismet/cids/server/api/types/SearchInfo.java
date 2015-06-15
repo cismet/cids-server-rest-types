@@ -13,6 +13,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,7 +31,7 @@ import de.cismet.cids.base.types.Key;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SearchInfo implements Key {
+public class SearchInfo implements Key, Serializable {
 
     //~ Instance fields --------------------------------------------------------
 
