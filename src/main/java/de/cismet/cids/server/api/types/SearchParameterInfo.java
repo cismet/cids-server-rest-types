@@ -42,6 +42,9 @@ public class SearchParameterInfo implements Key, Serializable {
     /** Name of the Parameter. */
     private String key;
 
+    /** description op the Parameter. */
+    private String description = null;
+
     /** Type op the Parameter. */
     private Type type;
 
