@@ -18,19 +18,19 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Collection Resource without type information.
+ * Generic Collection Resource for arbitrary $collection objects.
  *
- * @author      thorsten
- * @version     1.0
- * @see         GenericCollectionResource
- * @deprecated  use {@link GenericCollectionResource} instead
+ * @param    <C>  the type of the members of the collection
+ *
+ * @author   Pascal Dihé
+ * @version  1.0
  */
 // NOTE: by default lombok ignores all $ vars and @Data does not support "of"
 @XmlRootElement
 @NoArgsConstructor
 @ToString(of = { "$self", "$offset", "$limit", "$first", "$previous", "$next", "$last", "$collection" })
 @EqualsAndHashCode(of = { "$self", "$offset", "$limit", "$first", "$previous", "$next", "$last", "$collection" })
-public class CollectionResource {
+public class GenericCollectionResource<C> {
 
     //~ Instance fields --------------------------------------------------------
 
@@ -57,7 +57,7 @@ public class CollectionResource {
     private String $last;
     @Getter
     @Setter
-    private List $collection;
+    private List<C> $collection;
 
     //~ Constructors -----------------------------------------------------------
 
@@ -73,14 +73,14 @@ public class CollectionResource {
      * @param  $last        DOCUMENT ME!
      * @param  $collection  DOCUMENT ME!
      */
-    public CollectionResource(final String $self,
+    public GenericCollectionResource(final String $self,
             final int $offset,
             final int $limit,
             final String $first,
             final String $previous,
             final String $next,
             final String $last,
-            final List $collection) {
+            final List<C> $collection) {
         this.$self = $self;
         this.$offset = $offset;
         this.$limit = $limit;
