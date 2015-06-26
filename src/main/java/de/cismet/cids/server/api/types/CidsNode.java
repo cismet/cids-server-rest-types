@@ -135,23 +135,24 @@ public class CidsNode implements Key {
      * @deprecated  DOCUMENT ME!
      */
     public int getObjectId() {
-        if ((this.objectId == -1)
-                    && (this.objectKey != null)
-                    && (this.objectKey.lastIndexOf('/') != -1)) {
-            try {
-                this.objectId = Integer.parseInt(this.objectKey.substring(this.objectKey.lastIndexOf('/') + 1));
-            } catch (Exception ex) {
-                log.error("could not get object id from object key '" + this.objectKey
-                            + "' for node '" + this.name + "' (" + this.id + "): "
-                            + ex.getMessage(),
-                    ex);
+        if (this.objectId == -1) {
+            if ((this.objectKey != null)
+                        && (this.objectKey.lastIndexOf('/') != -1)) {
+                try {
+                    this.objectId = Integer.parseInt(this.objectKey.substring(this.objectKey.lastIndexOf('/') + 1));
+                } catch (Exception ex) {
+                    log.error("could not get object id from object key '" + this.objectKey
+                                + "' for node '" + this.name + "' (" + this.id + "): "
+                                + ex.getMessage(),
+                        ex);
+                    this.objectId = -1;
+                }
+            } else {
+                if (log.isDebugEnabled()) {
+                    log.debug("could not get object id from object key '" + this.objectKey
+                                + "' for node '" + this.name + "' (" + this.id + ")");
+                }
             }
-        } else {
-            if (log.isDebugEnabled()) {
-                log.debug("could not get object id from object key '" + this.objectKey
-                            + "' for node '" + this.name + "' (" + this.id + ")");
-            }
-            this.objectId = -1;
         }
 
         return this.objectId;
