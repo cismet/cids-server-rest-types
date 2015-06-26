@@ -7,55 +7,31 @@
 ****************************************************/
 package de.cismet.cids.server.api.types;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 import de.cismet.cids.base.types.Key;
 
 /**
- * DOCUMENT ME!
+ * Search Parameter container Class.
  *
  * @author   thorsten
  * @version  1.0
  */
 @XmlRootElement
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class SearchParameter implements Key {
 
     //~ Instance fields --------------------------------------------------------
 
+    /** Name of the parameter. */
     private String key;
-    private String value;
 
-    //~ Methods ----------------------------------------------------------------
-
-    /**
-     * DOCUMENT ME!
-     *
-     * @return  DOCUMENT ME!
-     */
-    public String getValue() {
-        return value;
-    }
-
-    /**
-     * DOCUMENT ME!
-     *
-     * @param  value  DOCUMENT ME!
-     */
-    public void setValue(final String value) {
-        this.value = value;
-    }
-
-    /**
-     * DOCUMENT ME!
-     *
-     * @param  key  DOCUMENT ME!
-     */
-    public void setKey(final String key) {
-        this.key = key;
-    }
-
-    @Override
-    public String getKey() {
-        return key;
-    }
+    /** Value of the parameter. Object type to support Jackson serialization / deserialization */
+    private Object value;
 }
