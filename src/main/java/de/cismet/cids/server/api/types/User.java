@@ -13,6 +13,7 @@ import com.sun.jersey.core.util.Base64;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Data
 @Slf4j
 @EqualsAndHashCode(exclude = { "pass", "passHash", "userGroups", "validated" })
+@NoArgsConstructor
 public class User {
 
     //~ Static fields/initializers ---------------------------------------------
@@ -44,10 +46,12 @@ public class User {
 
     //~ Instance fields --------------------------------------------------------
 
+    @NonNull
     private String user;
     private String domain = "local"; // NOI18N;
     private String passHash;
-    private Collection<String> userGroups;
+    @NonNull
+    private Collection<String> userGroups = new ArrayList<String>();
 
     @JsonIgnore
     private String pass;
@@ -55,13 +59,6 @@ public class User {
     private boolean validated;
 
     //~ Constructors -----------------------------------------------------------
-
-    /**
-     * Creates a new User object.
-     */
-    public User() {
-        userGroups = new ArrayList<String>();
-    }
 
     /**
      * Creates a new User object from an authString of format 'username[@domain]'.
@@ -108,7 +105,6 @@ public class User {
      * @param  groups  DOCUMENT ME!
      */
     public User(final String user, final String domain, final String pass, final String... groups) {
-        this();
         validated = false;
         this.user = user;
         this.domain = domain;
