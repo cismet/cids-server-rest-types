@@ -59,7 +59,9 @@ public enum Type {
     //~ Methods ----------------------------------------------------------------
 
     /**
-     * Tries to find a type for a give java class.
+     * Tries to find a type for a give java class.<br>
+     * Uses string comparison instead of isAssignableFrom or instanceOf to avoid dependencies to legacy cids classes
+     * like DefaultMetaObject.
      *
      * @param   javaClass  the java class
      *
