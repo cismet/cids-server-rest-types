@@ -18,13 +18,15 @@ import de.cismet.cidsx.base.types.Key;
 /**
  * DOCUMENT ME!
  *
- * @author   thorsten
- * @version  1.0
+ * @author      thorsten
+ * @version     1.0
+ * @deprecated  use CidsNode instead!
  */
 @XmlRootElement
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Deprecated
 public class Node implements Key {
 
     //~ Instance fields --------------------------------------------------------

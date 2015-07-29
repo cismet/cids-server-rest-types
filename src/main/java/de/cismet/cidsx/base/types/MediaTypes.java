@@ -32,6 +32,9 @@ public class MediaTypes {
     public static final String APPLICATION_X_CIDS_CLASS_ICON = "application/x-cids-class-icon";
     public static final String APPLICATION_X_CIDS_OBJECT_ICON = "application/x-cids-object-icon";
     public static final String APPLICATION_X_JAVA_SERIALIZED_OBJECT = "application/x-java-serialized-object";
+    public static final String APPLICATION_X_CIDS_NODE_LEAF_ICON = "application/x-cids-node-leaf-icon";
+    public static final String APPLICATION_X_CIDS_NODE_OPEN_ICON = "application/x-cids-node-open-icon";
+    public static final String APPLICATION_X_CIDS_NODE_CLOSED_ICON = "application/x-cids-node-closed-icon";
 
     public static final MediaType IMAGE_PNG_TYPE = MediaType.valueOf(IMAGE_PNG);
     public static final MediaType APPLICATION_X_CIDS_CLASS_ICON_TYPE = MediaType.valueOf(APPLICATION_X_CIDS_CLASS_ICON);
@@ -39,6 +42,12 @@ public class MediaTypes {
             APPLICATION_X_CIDS_OBJECT_ICON);
     public static final MediaType APPLICATION_X_JAVA_SERIALIZED_OBJECT_TYPE = MediaType.valueOf(
             APPLICATION_X_JAVA_SERIALIZED_OBJECT);
+    public static final MediaType APPLICATION_X_CIDS_NODE_LEAF_ICON_TYPE = MediaType.valueOf(
+            APPLICATION_X_CIDS_NODE_LEAF_ICON);
+    public static final MediaType APPLICATION_X_CIDS_NODE_OPEN_ICON_TYPE = MediaType.valueOf(
+            APPLICATION_X_CIDS_NODE_OPEN_ICON);
+    public static final MediaType APPLICATION_X_CIDS_NODE_CLOSED_ICON_TYPE = MediaType.valueOf(
+            APPLICATION_X_CIDS_NODE_CLOSED_ICON);
 
     //~ Methods ----------------------------------------------------------------
 
