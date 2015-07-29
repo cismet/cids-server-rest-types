@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,37 @@ import de.cismet.cidsx.base.types.Key;
 @AllArgsConstructor
 @Slf4j
 public class CidsNode implements Key {
+
+    //~ Enums ------------------------------------------------------------------
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @version  $Revision$, $Date$
+     */
+    @XmlTransient
+    public static enum IconType implements Key {
+
+        //~ Enum constants -----------------------------------------------------
+
+        LEAF_ICON("Leaf"), OPEN_ICON("Open"), CLOSED_ICON("Closed");
+
+        //~ Instance fields ----------------------------------------------------
+
+        @Getter
+        private final String key;
+
+        //~ Constructors -------------------------------------------------------
+
+        /**
+         * Creates a new IconType object.
+         *
+         * @param  key  DOCUMENT ME!
+         */
+        IconType(final String key) {
+            this.key = key;
+        }
+    }
 
     //~ Instance fields --------------------------------------------------------
 
