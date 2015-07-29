@@ -5,11 +5,6 @@
 *              ... and it just works.
 *
 ****************************************************/
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.cismet.cidsx.server.api.types;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -26,7 +21,8 @@ import de.cismet.cidsx.base.types.Key;
 import de.cismet.cidsx.base.types.Type;
 
 /**
- * Provides name and Type information about an Search Parameter.
+ * Provides name and Type information about a Parameter, e.g.
+ * Action Parameters and Search Parameters.
  *
  * @author   Pascal Dihé
  * @version  $Revision$, $Date$
@@ -35,22 +31,25 @@ import de.cismet.cidsx.base.types.Type;
 @Data
 @NoArgsConstructor
 @JsonInclude(Include.NON_DEFAULT)
-public class SearchParameterInfo implements Key, Serializable {
+public class ParameterInfo implements Key, Serializable {
 
     //~ Instance fields --------------------------------------------------------
 
     /** Name of the Parameter. */
     private String key;
 
-    /** description op the Parameter. */
+    /** Description op the Parameter (optional).*/
     private String description = null;
 
-    /** Type op the Parameter. */
+    /** Type of the Parameter. */
     private Type type;
+    
+    /** MIME Type of the Parameter (optional). */
+    private String mediaType = null;
+    
+    /** Additional info on a type, e.g. Java Class of a JAVA_TYPE (optional).*/
+    private String additionalTypeInfo = null;
 
-    /** Additional info on a type, e.g. Java Class of a JAVA_TYPE */
-    private String additionalTypeInfo;
-
-    /** Determines if the Type is an array Type. */
+    /** Determines if the Type is an array Type. default:false*/
     private boolean isArray = false;
 }

@@ -38,23 +38,26 @@ public class SearchInfo implements Key, Serializable {
     private String key;
     private String name;
     private String description;
-    private List<SearchParameterInfo> parameterDescription;
+    /**
+     * Description of the parameters of the Search
+     */
+    private List<ParameterInfo> parameterDescription;
     /** Description of the return type of the search. */
-    private SearchParameterInfo resultDescription;
+    private ParameterInfo resultDescription;
 
     //~ Methods ----------------------------------------------------------------
 
     /**
-     * Gets the SearchParameterInfo of the specified parameter (key).
+     * Gets the ParameterInfo of the specified parameter (key).
      *
      * @param   key  name of the parameter
      *
-     * @return  SearchParameterInfo or null
+     * @return  ParameterInfo or null
      */
     @JsonIgnore
-    public SearchParameterInfo getSearchParameterInfo(final String key) {
+    public ParameterInfo getSearchParameterInfo(final String key) {
         if ((this.parameterDescription != null) && !this.parameterDescription.isEmpty()) {
-            for (final SearchParameterInfo searchParameterInfo : this.parameterDescription) {
+            for (final ParameterInfo searchParameterInfo : this.parameterDescription) {
                 if (searchParameterInfo.getKey().equalsIgnoreCase(key)) {
                     return searchParameterInfo;
                 }

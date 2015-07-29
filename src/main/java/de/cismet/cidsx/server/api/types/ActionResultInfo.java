@@ -18,7 +18,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import de.cismet.cidsx.base.types.Key;
 
 /**
- * DOCUMENT ME!
+ * Provides meta-information  about the results of a running or finished
+ * action task.
  *
  * @author   thorsten
  * @version  1.0
