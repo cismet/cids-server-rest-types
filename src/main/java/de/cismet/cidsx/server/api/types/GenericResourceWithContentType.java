@@ -12,7 +12,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * DOCUMENT ME!
+ * Generic Resource with content type information.
+ *
+ * @param    <T>
  *
  * @author   thorsten
  * @version  1.0
@@ -20,10 +22,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GenericResourceWithContentType {
+public class GenericResourceWithContentType<T> {
 
     //~ Instance fields --------------------------------------------------------
 
     private String contentType;
-    private Object res;
+    private T res;
 }

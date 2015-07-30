@@ -1,53 +1,60 @@
+/***************************************************
+*
+* cismet GmbH, Saarbruecken, Germany
+*
+*              ... and it just works.
+*
+****************************************************/
 package de.cismet.cidsx.server.api.types;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.List;
-import javax.xml.bind.annotation.XmlRootElement;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Provides information about server actions and their parameters.
- * 
- * @author Pascal Dihé
+ *
+ * @author   Pascal Dihé
+ * @version  $Revision$, $Date$
  */
 @XmlRootElement
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"actionKey"})
+@EqualsAndHashCode(of = { "actionKey" })
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class ActionInfo {
-    
-    /**
-    * Unique ACTION Key
-    */
+
+    //~ Instance fields --------------------------------------------------------
+
+    /** Unique ACTION Key. */
     protected String actionKey;
-    
-    /**
-     * Display name of the action
-     */
-    
+
+    /** Display name of the action. */
+
     protected String name;
-    
-    /**
-     * Description  of the ACTION
-     */
+
+    /** Description of the ACTION. */
     protected String description;
-    
-    /**
-     * Description of the parameters of the ACTION
-     */
+
+    /** Description of the parameters of the ACTION. */
     private List<ParameterInfo> parameterDescription;
-    
-    /** Description of the body parameter of the ACTION */
+
+    /** Description of the body parameter of the ACTION. */
     private ParameterInfo bodyDescription;
-    
+
     /** Description of the result type of the ACTION. */
-    private ParameterInfo resultDescription;  
+    private ParameterInfo resultDescription;
+
+    //~ Methods ----------------------------------------------------------------
 
     /**
      * Gets the ParameterInfo of the specified action parameter (key).
@@ -68,6 +75,4 @@ public class ActionInfo {
 
         return null;
     }
-   
-    
 }

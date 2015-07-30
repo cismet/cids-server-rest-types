@@ -38,10 +38,8 @@ public class SearchInfo implements Key, Serializable {
     private String key;
     private String name;
     private String description;
-    /**
-     * Description of the parameters of the Search
-     */
-    private List<ParameterInfo> parameterDescription;
+    /** Description of the parameters of the Search. */
+    private List<? extends ParameterInfo> parameterDescription;
     /** Description of the return type of the search. */
     private ParameterInfo resultDescription;
 
@@ -55,7 +53,7 @@ public class SearchInfo implements Key, Serializable {
      * @return  ParameterInfo or null
      */
     @JsonIgnore
-    public ParameterInfo getSearchParameterInfo(final String key) {
+    public ParameterInfo getParameterInfo(final String key) {
         if ((this.parameterDescription != null) && !this.parameterDescription.isEmpty()) {
             for (final ParameterInfo searchParameterInfo : this.parameterDescription) {
                 if (searchParameterInfo.getKey().equalsIgnoreCase(key)) {

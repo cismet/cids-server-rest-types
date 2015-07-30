@@ -15,11 +15,14 @@ package de.cismet.cidsx.base.types;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.InputStream;
+import java.io.Serializable;
 
 import javax.ws.rs.core.MediaType;
 
 /**
- * Commonly used (cids) Media Types that complement the default MediaTypes of javax.ws.rs.core.MediaType.
+ * Commonly used (cids) Media Types that complement the default MediaTypes of javax.ws.rs.core.MediaType. The difference
+ * between Media (or MIME) type and the {@link Type} is, that {@link Type} is only applicable to JSON documents (Media
+ * Type application/json).
  *
  * @author   Pascal Dihé
  * @version  $Revision$, $Date$
@@ -60,6 +63,13 @@ public class MediaTypes {
      * @return  MediaType, default is application/x-java-serialized-object
      */
     public static MediaType mediaTypeForJavaClass(final Class javaClass) {
+        // check some cidsx types that are known to be JSON-serializable
+        final Type type = Type.typeForJavaClass(javaClass);
+        if (type.equals(Type.ENTITY) || type.equals(Type.ENTITY_INFO)
+                    || type.equals(Type.ENTITY_REFERENCE) || type.equals(Type.NODE)) {
+            return MediaType.APPLICATION_JSON_TYPE;
+        }
+
         if (JsonNode.class.isAssignableFrom(javaClass)) {
             return MediaType.APPLICATION_JSON_TYPE;
         }
@@ -80,6 +90,11 @@ public class MediaTypes {
             return MediaType.TEXT_PLAIN_TYPE;
         }
 
-        return APPLICATION_X_JAVA_SERIALIZED_OBJECT_TYPE;
+        if (Serializable.class.isAssignableFrom(javaClass)) {
+            // binary serializable object
+            return APPLICATION_X_JAVA_SERIALIZED_OBJECT_TYPE;
+        }
+
+        return MediaType.APPLICATION_OCTET_STREAM_TYPE;
     }
 }
