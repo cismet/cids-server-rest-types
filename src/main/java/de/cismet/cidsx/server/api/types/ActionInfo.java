@@ -46,13 +46,13 @@ public class ActionInfo {
     protected String description;
 
     /** Description of the parameters of the ACTION. */
-    private List<ParameterInfo> parameterDescription;
+    private List<ActionParameterInfo> parameterDescription;
 
     /** Description of the body parameter of the ACTION. */
-    private ParameterInfo bodyDescription;
+    private ActionParameterInfo bodyDescription;
 
     /** Description of the result type of the ACTION. */
-    private ParameterInfo resultDescription;
+    private ActionParameterInfo resultDescription;
 
     //~ Methods ----------------------------------------------------------------
 
@@ -64,11 +64,11 @@ public class ActionInfo {
      * @return  ParameterInfo or null
      */
     @JsonIgnore
-    public ParameterInfo getActionParameterInfo(final String key) {
+    public ActionParameterInfo getActionParameterInfo(final String key) {
         if ((this.parameterDescription != null) && !this.parameterDescription.isEmpty()) {
-            for (final ParameterInfo searchParameterInfo : this.parameterDescription) {
-                if (searchParameterInfo.getKey().equalsIgnoreCase(key)) {
-                    return searchParameterInfo;
+            for (final ActionParameterInfo actionParameterInfo : this.parameterDescription) {
+                if (actionParameterInfo.getKey().equalsIgnoreCase(key)) {
+                    return actionParameterInfo;
                 }
             }
         }

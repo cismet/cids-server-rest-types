@@ -43,9 +43,6 @@ public class ParameterInfo implements Key, Serializable {
     /** Type of the Parameter. */
     private Type type;
 
-    /** MIME Type of the Parameter (optional). */
-    private String mediaType = null;
-
     /** Additional info on a type, e.g. Java Class of a JAVA_TYPE (optional). */
     private String additionalTypeInfo = null;
 

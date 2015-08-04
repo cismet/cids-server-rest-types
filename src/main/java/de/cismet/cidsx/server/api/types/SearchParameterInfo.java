@@ -7,13 +7,14 @@
 ****************************************************/
 package de.cismet.cidsx.server.api.types;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Provides information about (Search) parameters.
  *
- * @author      Pascal Dihé <pascal.dihe@cismet.de>
- * @version     $Revision$, $Date$
- * @deprecated  use the generic {@link ParameterInfo} instead!
+ * @author   Pascal Dihé <pascal.dihe@cismet.de>
+ * @version  $Revision$, $Date$
  */
-@Deprecated
+@XmlRootElement
 public class SearchParameterInfo extends ParameterInfo {
 }
