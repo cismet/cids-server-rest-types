@@ -32,6 +32,8 @@ public class MediaTypes {
     //~ Static fields/initializers ---------------------------------------------
 
     public static final String IMAGE_PNG = "image/png";
+    public static final String TEXT_CSV = "text/csv";
+    public static final String APPLICATION_ZIP = "application/zip";
     public static final String APPLICATION_X_CIDS_CLASS_ICON = "application/x-cids-class-icon";
     public static final String APPLICATION_X_CIDS_OBJECT_ICON = "application/x-cids-object-icon";
     public static final String APPLICATION_X_JAVA_SERIALIZED_OBJECT = "application/x-java-serialized-object";
@@ -40,6 +42,8 @@ public class MediaTypes {
     public static final String APPLICATION_X_CIDS_NODE_CLOSED_ICON = "application/x-cids-node-closed-icon";
 
     public static final MediaType IMAGE_PNG_TYPE = MediaType.valueOf(IMAGE_PNG);
+    public static final MediaType TEXT_CSV_TYPE = MediaType.valueOf(TEXT_CSV);
+    public static final MediaType APPLICATION_ZIP_TYPE = MediaType.valueOf(APPLICATION_ZIP);
     public static final MediaType APPLICATION_X_CIDS_CLASS_ICON_TYPE = MediaType.valueOf(APPLICATION_X_CIDS_CLASS_ICON);
     public static final MediaType APPLICATION_X_CIDS_OBJECT_ICON_TYPE = MediaType.valueOf(
             APPLICATION_X_CIDS_OBJECT_ICON);
