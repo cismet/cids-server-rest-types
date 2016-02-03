@@ -34,30 +34,14 @@ public class CollectionResource {
 
     //~ Instance fields --------------------------------------------------------
 
-    @Getter
-    @Setter
-    private String $self;
-    @Getter
-    @Setter
-    private int $offset;
-    @Getter
-    @Setter
-    private int $limit;
-    @Getter
-    @Setter
-    private String $first;
-    @Getter
-    @Setter
-    private String $previous;
-    @Getter
-    @Setter
-    private String $next;
-    @Getter
-    @Setter
-    private String $last;
-    @Getter
-    @Setter
-    private List $collection;
+    @Getter @Setter private String $self;
+    @Getter @Setter private int $offset;
+    @Getter @Setter private int $limit;
+    @Getter @Setter private String $first;
+    @Getter @Setter private String $previous;
+    @Getter @Setter private String $next;
+    @Getter @Setter private String $last;
+    @Getter @Setter private List $collection;
 
     //~ Constructors -----------------------------------------------------------
 

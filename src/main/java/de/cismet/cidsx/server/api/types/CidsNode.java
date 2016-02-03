@@ -54,8 +54,7 @@ public class CidsNode implements Key {
 
         //~ Instance fields ----------------------------------------------------
 
-        @Getter
-        private final String key;
+        @Getter private final String key;
 
         //~ Constructors -------------------------------------------------------
 
@@ -71,20 +70,17 @@ public class CidsNode implements Key {
 
     //~ Instance fields --------------------------------------------------------
 
-    @XmlTransient
-    @JsonIgnore
+
     /**
      * ID is part of the Key ($self reference). No need to store it twice.
      */
-    private String id;
+    @XmlTransient @JsonIgnore private String id;
     private String name;
     private String description;
-    @XmlTransient
-    @JsonIgnore
     /**
      * Domain is part of the Key ($self reference). No need to store it twice.
      */
-    private String domain;
+    @XmlTransient @JsonIgnore private String domain;
     private String classKey = null;
     private String objectKey = null;
     private String dynamicChildren;

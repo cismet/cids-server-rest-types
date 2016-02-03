@@ -46,17 +46,13 @@ public class User {
 
     //~ Instance fields --------------------------------------------------------
 
-    @NonNull
-    private String user;
+    @NonNull private String user;
     private String domain = "local"; // NOI18N;
     private String passHash;
-    @NonNull
-    private Collection<String> userGroups = new ArrayList<String>();
+    @NonNull private Collection<String> userGroups = new ArrayList<String>();
 
-    @JsonIgnore
-    private String pass;
-    @JsonIgnore
-    private boolean validated;
+    @JsonIgnore private String pass;
+    @JsonIgnore private boolean validated;
 
     //~ Constructors -----------------------------------------------------------
 

@@ -37,9 +37,7 @@ public class ServerStatus implements Key {
 
     //~ Instance fields --------------------------------------------------------
 
-    @NonNull
-    private String key;
-    @NonNull
-    private Object value;
+    @NonNull private String key;
+    @NonNull private Object value;
     private Date lastBuildDate;
 }

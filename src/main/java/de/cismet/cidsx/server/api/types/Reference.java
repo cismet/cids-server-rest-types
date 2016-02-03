@@ -30,9 +30,7 @@ public class Reference {
 
     //~ Instance fields --------------------------------------------------------
 
-    @Getter
-    @Setter
-    private String $ref;
+    @Getter @Setter private String $ref;
 
     //~ Constructors -----------------------------------------------------------
 

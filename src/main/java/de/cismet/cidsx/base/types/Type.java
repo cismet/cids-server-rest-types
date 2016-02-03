@@ -47,14 +47,10 @@ public enum Type {
     //~ Instance fields --------------------------------------------------------
 
     /** Corresponding java type. */
-    @XmlTransient
-    @JsonIgnore
-    private final String javaType;
+    @XmlTransient @JsonIgnore private final String javaType;
 
     /** Determines if the type is a primitive type or not. */
-    @XmlTransient
-    @JsonIgnore
-    private final boolean primitive;
+    @XmlTransient @JsonIgnore private final boolean primitive;
 
     //~ Methods ----------------------------------------------------------------
 
