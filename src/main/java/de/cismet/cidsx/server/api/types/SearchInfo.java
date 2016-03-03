@@ -64,4 +64,17 @@ public class SearchInfo implements Key, Serializable {
 
         return null;
     }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @param   key  DOCUMENT ME!
+     *
+     * @return  DOCUMENT ME!
+     */
+    @JsonIgnore
+    @Deprecated
+    public SearchParameterInfo getSearchParameterInfo(final String key) {
+        return this.getParameterInfo(key);
+    }
 }

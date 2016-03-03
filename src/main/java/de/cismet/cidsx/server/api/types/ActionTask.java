@@ -76,6 +76,27 @@ public class ActionTask extends ActionInfo implements Key {
         this.setActionInfo(actionInfo);
     }
 
+    /**
+     * Creates a new ActionTask object.
+     *
+     * @param       key          DOCUMENT ME!
+     * @param       actionKey    DOCUMENT ME!
+     * @param       description  DOCUMENT ME!
+     * @param       parameters   DOCUMENT ME!
+     * @param       status       DOCUMENT ME!
+     *
+     * @deprecated  legacy constructor for compatibility with old ActionCore
+     */
+    @Deprecated
+    public ActionTask(final String key,
+            final String actionKey,
+            final String description,
+            final Map<String, Object> parameters,
+            final Status status) {
+        this.setActionInfo(new ActionInfo(actionKey, name, description, null, null, null));
+        this.parameters = parameters;
+    }
+
     //~ Methods ----------------------------------------------------------------
 
     /**
