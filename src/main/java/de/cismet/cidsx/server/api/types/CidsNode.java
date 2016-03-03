@@ -70,16 +70,11 @@ public class CidsNode implements Key {
 
     //~ Instance fields --------------------------------------------------------
 
-
-    /**
-     * ID is part of the Key ($self reference). No need to store it twice.
-     */
+    /** ID is part of the Key ($self reference). No need to store it twice. */
     @XmlTransient @JsonIgnore private String id;
     private String name;
     private String description;
-    /**
-     * Domain is part of the Key ($self reference). No need to store it twice.
-     */
+    /** Domain is part of the Key ($self reference). No need to store it twice. */
     @XmlTransient @JsonIgnore private String domain;
     private String classKey = null;
     private String objectKey = null;
