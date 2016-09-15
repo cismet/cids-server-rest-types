@@ -84,6 +84,8 @@ public class CidsNode implements Key {
     private boolean leaf = false;
     private boolean dynamic = false;
     private String icon = null;
+    private String cachedGeometry = null;
+    private String lightweightJson = null;
     /**
      * DOCUMENT ME!
      *
