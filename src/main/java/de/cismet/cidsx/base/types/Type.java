@@ -24,9 +24,10 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- * Common types to support serialization / deserialization of JSON objects.
+ * Common types to support serialization / deserialization of JSON objects. To describe the type of non-JSON Documents
+ * (application/json), {@link MediaTypes} shall be used.
  *
- * @author   pd
+ * @author   Pascal Dihé
  * @version  $Revision$, $Date$
  */
 @Getter
