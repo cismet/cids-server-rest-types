@@ -7,33 +7,29 @@
 ****************************************************/
 package de.cismet.cidsx.server.api.types;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-import java.util.Map;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import de.cismet.cidsx.base.types.Key;
-
 /**
- * Provides meta-information about the results of a running or finished action task.
+ * Provides information about (Action) Parameters.
  *
- * @author   thorsten
- * @version  1.0
+ * @author   Pasal Dihé
+ * @version  $Revision$, $Date$
  */
 @XmlRootElement
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class ActionResultInfo implements Key {
+@EqualsAndHashCode(callSuper = true)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+public class ActionParameterInfo extends ParameterInfo {
 
     //~ Instance fields --------------------------------------------------------
 
-    private String key;
-    private String name;
-    private String description;
-    private String contentType;
-    private Map<String, Object> additionalInfo;
+    /** MIME Type of the Parameter (optional). */
+    private String mediaType = null;
 }

@@ -13,8 +13,6 @@ import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import de.cismet.cidsx.base.types.Key;
-
 /**
  * Search Parameter container Class.
  *
@@ -25,7 +23,7 @@ import de.cismet.cidsx.base.types.Key;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SearchParameter implements Key {
+public class SearchParameter implements GenericParameter {
 
     //~ Instance fields --------------------------------------------------------
 
