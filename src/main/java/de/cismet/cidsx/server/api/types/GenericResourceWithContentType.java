@@ -11,8 +11,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
- * DOCUMENT ME!
+ * Generic Resource with content type information.
+ *
+ * @param    <T>
  *
  * @author   thorsten
  * @version  1.0
@@ -20,10 +24,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GenericResourceWithContentType {
+public class GenericResourceWithContentType<T> implements Serializable {
 
     //~ Instance fields --------------------------------------------------------
 
     private String contentType;
-    private Object res;
+    private T res;
 }
