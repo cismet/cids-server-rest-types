@@ -5,12 +5,12 @@
     <parent>
         <groupId>de.cismet.cids</groupId>
         <artifactId>cids-parent</artifactId>
-        <version>3.3.1</version>
+        <version>3.4</version>
     </parent>
     
     <groupId>de.cismet.cids</groupId>
     <artifactId>cids-server-rest-types</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT-UBA</version>
     <packaging>jar</packaging>
 
     <name>cids Server REST types</name>
