@@ -2,9 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
+    <!-- 
+        FIXME: Replace deprecated cids-parent by cismet-parent
+    -->
     <parent>
-        <groupId>de.cismet</groupId>
-        <artifactId>cismet-parent</artifactId>
+        <groupId>de.cismet.cids</groupId>
+        <artifactId>cids-parent</artifactId>
         <version>5.0-SNAPSHOT</version>
     </parent>
     
@@ -17,7 +20,7 @@
     <description>Common RESTful types for cids REST APIs v2.0</description>
     
     <!-- 
-        TODO relocate to dependency management section of ext-libs-bom 
+        TODO: relocate to dependency management section of ext-libs-bom 
     -->
     <properties>
         <jersey.version>1.17.1</jersey.version>
@@ -85,4 +88,14 @@
             <type>jar</type>
         </dependency>
     </dependencies>
+    
+    <build>
+        <!-- 
+            FIXME: DANGER DANGER DANGER !!!
+            the artifact has to be renamed due to compatibility reasons to the 
+            legacy cidsDistribution
+            See https://cismet.slack.com/messages/ugly-winning/files/F3ZC7HX7V/
+        -->
+        <finalName>cids-server-rest-types-1.0-SNAPSHOT</finalName>
+    </build>
 </project>
