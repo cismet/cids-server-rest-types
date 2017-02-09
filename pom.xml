@@ -18,15 +18,7 @@
 
     <name>cids Server REST types</name>
     <description>Common RESTful types for cids REST APIs v2.0</description>
-    
-    <!-- 
-        TODO: relocate to dependency management section of ext-libs-bom 
-    -->
-    <properties>
-        <jersey.version>1.17.1</jersey.version>
-        <jackson.version>2.2.2</jackson.version>
-    </properties>
-        
+            
     <scm>
         <connection>https://github.com/cismet/cids-server-rest-types.git</connection>
         <developerConnection>scm:git:git@github.com:cismet/cids-server-rest-types.git</developerConnection>
@@ -64,7 +56,6 @@
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-core</artifactId>
-            <version>${jersey.version}</version>
         </dependency>
         <!-- this is only a helper library that is needed at compile time -->
         <dependency>
@@ -84,18 +75,15 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
             <type>jar</type>
         </dependency>
     </dependencies>
