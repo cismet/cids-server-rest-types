@@ -6,8 +6,8 @@
         FIXME: Replace deprecated cids-parent by cismet-parent
     -->
     <parent>
-        <groupId>de.cismet.cids</groupId>
-        <artifactId>cids-parent</artifactId>
+        <groupId>de.cisme</groupId>
+        <artifactId>cismet-parent</artifactId>
         <version>5.1-SNAPSHOT</version>
     </parent>
     
