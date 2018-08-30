@@ -6,18 +6,18 @@
         FIXME: Replace deprecated cids-parent by cismet-parent
     -->
     <parent>
-        <groupId>de.cismet</groupId>
-        <artifactId>cismet-parent</artifactId>
-        <version>5.1-SNAPSHOT</version>
+        <groupId>de.cismet.cids</groupId>
+        <artifactId>cids-parent</artifactId>
+        <version>6.0</version>
     </parent>
     
     <groupId>de.cismet.cids</groupId>
     <artifactId>cids-server-rest-types</artifactId>
-    <version>5.1-UBA-SNAPSHOT</version>
+    <version>6.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>cids Server REST types</name>
-    <description>Common RESTful types for cids REST APIs v5.0 UBA</description>
+    <description>Common RESTful types for cids REST APIs v2.0</description>
             
     <scm>
         <connection>https://github.com/cismet/cids-server-rest-types.git</connection>
@@ -42,7 +42,7 @@
             <dependency>
                 <groupId>de.cismet</groupId>
                 <artifactId>cismet-ext-bom</artifactId>
-                <version>5.0.1</version>
+                <version>6.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
