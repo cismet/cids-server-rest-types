@@ -1,15 +1,18 @@
-/***************************************************
-*
-* cismet GmbH, Saarbruecken, Germany
-*
-*              ... and it just works.
-*
-****************************************************/
+/** *************************************************
+ *
+ * cismet GmbH, Saarbruecken, Germany
+ *
+ *              ... and it just works.
+ *
+ *************************************************** */
 package de.cismet.cidsx.server.api.types;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.sun.jersey.core.util.Base64;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,47 +26,50 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Map;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * DOCUMENT ME!
  *
- * @author   thorsten
- * @version  1.0
+ * @author thorsten
+ * @version 1.0
  */
 @XmlRootElement
 @Data
 @Slf4j
-@EqualsAndHashCode(exclude = { "jwt", "pass", "passHash", "userGroups", "validated" })
+@EqualsAndHashCode(exclude = {"jwt", "pass", "passHash", "userGroups", "validated"})
 @NoArgsConstructor
 public class User {
 
     //~ Static fields/initializers ---------------------------------------------
-
     public static final User NONE = makeNONE();
     public static final String BASIC_AUTH_PREFIX = "Basic ";
     public static final String BEARER_AUTH_PREFIX = "Bearer ";
 
     //~ Instance fields --------------------------------------------------------
-
-    @NonNull private String user;
+    @NonNull
+    private String user;
     private String domain = "local"; // NOI18N;
     private String jwt;
     private String passHash;
-    @NonNull private Collection<String> userGroups = new ArrayList<String>();
+    @NonNull
+    private Collection<String> userGroups = new ArrayList<String>();
 
-    @JsonIgnore private String pass;
-    @JsonIgnore private boolean validated;
+    @JsonIgnore
+    private String pass;
+    @JsonIgnore
+    private boolean validated;
 
     //~ Constructors -----------------------------------------------------------
-
     /**
-     * Creates a new User object from an authString of format 'username[@domain]'.
+     * Creates a new User object from an authString of format
+     * 'username[@domain]'.
      *
-     * @param   authString  <code>String</code> of format 'username[@domain]'
+     * @param authString  <code>String</code> of format 'username[@domain]'
      *
-     * @throws  IllegalArgumentException  DOCUMENT ME!
+     * @throws IllegalArgumentException DOCUMENT ME!
      */
     public User(@NonNull final String authString) {
         if (authString.startsWith(BASIC_AUTH_PREFIX)) {
@@ -90,6 +96,20 @@ public class User {
             }
         } else if (authString.startsWith(BEARER_AUTH_PREFIX)) {
             jwt = authString.substring(BEARER_AUTH_PREFIX.length());
+            try {
+                jwt = authString.substring(BEARER_AUTH_PREFIX.length());
+                String b64Payload = jwt.split("\\.")[1];
+                String paddedPayload = b64Payload;
+                for (int i = 0; i < b64Payload.length() % 4; ++i) {
+                    paddedPayload = paddedPayload + "=";
+
+                }
+                String encodedString = new String(Base64.decode((paddedPayload).getBytes(StandardCharsets.UTF_8)));
+                Map map = new ObjectMapper().readValue(encodedString, Map.class);
+                user = map.get("sub").toString();
+            } catch (IOException ex) {
+                log.warn("Problem during extraction of username from jwt Token", ex);
+            }
         } else {
             throw new IllegalArgumentException("Not a proper Basic Auth or Bearer (JWT) String provided"); // NOI18N
         }
@@ -99,10 +119,10 @@ public class User {
     /**
      * Creates a new User object.
      *
-     * @param  user    DOCUMENT ME!
-     * @param  domain  DOCUMENT ME!
-     * @param  pass    DOCUMENT ME!
-     * @param  groups  DOCUMENT ME!
+     * @param user DOCUMENT ME!
+     * @param domain DOCUMENT ME!
+     * @param pass DOCUMENT ME!
+     * @param groups DOCUMENT ME!
      */
     public User(final String user, final String domain, final String pass, final String... groups) {
         validated = false;
@@ -114,11 +134,10 @@ public class User {
     }
 
     //~ Methods ----------------------------------------------------------------
-
     /**
      * DOCUMENT ME!
      *
-     * @return  DOCUMENT ME!
+     * @return DOCUMENT ME!
      */
     private static User makeNONE() {
         final User u = new User(null, null, null);
