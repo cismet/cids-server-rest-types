@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Data
 @Slf4j
-@EqualsAndHashCode(exclude = { "pass", "passHash", "userGroups", "validated" })
+@EqualsAndHashCode(exclude = { "jwt", "pass", "passHash", "userGroups", "validated" })
 @NoArgsConstructor
 public class User {
 
@@ -43,11 +43,13 @@ public class User {
 
     public static final User NONE = makeNONE();
     public static final String BASIC_AUTH_PREFIX = "Basic ";
+    public static final String BEARER_AUTH_PREFIX = "Bearer ";
 
     //~ Instance fields --------------------------------------------------------
 
     @NonNull private String user;
     private String domain = "local"; // NOI18N;
+    private String jwt;
     private String passHash;
     @NonNull private Collection<String> userGroups = new ArrayList<String>();
 
@@ -67,10 +69,10 @@ public class User {
         if (authString.startsWith(BASIC_AUTH_PREFIX)) {
             final String token = new String(Base64.decode(authString.substring(BASIC_AUTH_PREFIX.length())));
             if (token.contains(":")) {
-                final String[] parts = token.split(":");                                   // NOI18N
+                final String[] parts = token.split(":");                                                   // NOI18N
                 final String login = parts[0];
-                if (login.contains("@")) {                                                 // NOI18N
-                    final String[] loginParts = login.split("@");                          // NOI18N
+                if (login.contains("@")) {                                                                 // NOI18N
+                    final String[] loginParts = login.split("@");                                          // NOI18N
                     if (loginParts.length == 2) {
                         domain = loginParts[1];
                     }
@@ -86,8 +88,10 @@ public class User {
             } else {
                 user = token;
             }
+        } else if (authString.startsWith(BEARER_AUTH_PREFIX)) {
+            jwt = authString.substring(BEARER_AUTH_PREFIX.length());
         } else {
-            throw new IllegalArgumentException("Not a proper Basic Auth String provided"); // NOI18N
+            throw new IllegalArgumentException("Not a proper Basic Auth or Bearer (JWT) String provided"); // NOI18N
         }
         validated = false;
     }
