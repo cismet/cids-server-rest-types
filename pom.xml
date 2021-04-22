@@ -13,7 +13,7 @@
     
     <groupId>de.cismet.cids</groupId>
     <artifactId>cids-server-rest-types</artifactId>
-    <version>7.0</version>
+    <version>7.0.1</version>
     <packaging>jar</packaging>
 
     <name>cids Server REST types</name>
@@ -23,7 +23,7 @@
         <connection>https://github.com/cismet/cids-server-rest-types.git</connection>
         <developerConnection>scm:git:git@github.com:cismet/cids-server-rest-types.git</developerConnection>
         <url>https://github.com/cismet/cids-server-rest-types</url>
-        <tag>v7.0</tag>
+        <tag>v7.0.1</tag>
     </scm>
     
     <ciManagement>
