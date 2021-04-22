@@ -75,10 +75,10 @@ public class User {
         if (authString.startsWith(BASIC_AUTH_PREFIX)) {
             final String token = new String(Base64.decode(authString.substring(BASIC_AUTH_PREFIX.length())));
             if (token.contains(":")) {
-                final String[] parts = token.split(":");                                                   // NOI18N
+                final String[] parts = token.split(":");          // NOI18N
                 final String login = parts[0];
-                if (login.contains("@")) {                                                                 // NOI18N
-                    final String[] loginParts = login.split("@");                                          // NOI18N
+                if (login.contains("@")) {                        // NOI18N
+                    final String[] loginParts = login.split("@"); // NOI18N
                     if (loginParts.length == 2) {
                         domain = loginParts[1];
                     }
@@ -100,11 +100,11 @@ public class User {
                 jwt = authString.substring(BEARER_AUTH_PREFIX.length());
                 final String b64Payload = jwt.split("\\.")[1];
                 String paddedPayload = b64Payload;
-                
+
                 for (int i = 0; i < ((4 - (b64Payload.length() % 4)) % 4); ++i) {
                     paddedPayload = paddedPayload + "=";
                 }
-                
+
                 final String encodedString = new String(Base64.decode(
                             (paddedPayload).getBytes(StandardCharsets.UTF_8)));
                 final Map map = new ObjectMapper().readValue(encodedString, Map.class);
