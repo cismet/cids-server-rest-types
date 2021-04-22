@@ -8,6 +8,7 @@
 package de.cismet.cidsx.server.api.types;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.sun.jersey.core.util.Base64;
 
@@ -20,9 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.io.IOException;
+
+import java.nio.charset.StandardCharsets;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Map;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -69,10 +75,10 @@ public class User {
         if (authString.startsWith(BASIC_AUTH_PREFIX)) {
             final String token = new String(Base64.decode(authString.substring(BASIC_AUTH_PREFIX.length())));
             if (token.contains(":")) {
-                final String[] parts = token.split(":");                                                   // NOI18N
+                final String[] parts = token.split(":");          // NOI18N
                 final String login = parts[0];
-                if (login.contains("@")) {                                                                 // NOI18N
-                    final String[] loginParts = login.split("@");                                          // NOI18N
+                if (login.contains("@")) {                        // NOI18N
+                    final String[] loginParts = login.split("@"); // NOI18N
                     if (loginParts.length == 2) {
                         domain = loginParts[1];
                     }
@@ -90,6 +96,22 @@ public class User {
             }
         } else if (authString.startsWith(BEARER_AUTH_PREFIX)) {
             jwt = authString.substring(BEARER_AUTH_PREFIX.length());
+            try {
+                jwt = authString.substring(BEARER_AUTH_PREFIX.length());
+                final String b64Payload = jwt.split("\\.")[1];
+                String paddedPayload = b64Payload;
+
+                for (int i = 0; i < ((4 - (b64Payload.length() % 4)) % 4); ++i) {
+                    paddedPayload = paddedPayload + "=";
+                }
+
+                final String encodedString = new String(Base64.decode(
+                            (paddedPayload).getBytes(StandardCharsets.UTF_8)));
+                final Map map = new ObjectMapper().readValue(encodedString, Map.class);
+                user = map.get("sub").toString();
+            } catch (IOException ex) {
+                log.warn("Problem during extraction of username from jwt Token", ex);
+            }
         } else {
             throw new IllegalArgumentException("Not a proper Basic Auth or Bearer (JWT) String provided"); // NOI18N
         }
