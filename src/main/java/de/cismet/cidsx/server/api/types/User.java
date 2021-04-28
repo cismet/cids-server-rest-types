@@ -109,6 +109,7 @@ public class User {
                             (paddedPayload).getBytes(StandardCharsets.UTF_8)));
                 final Map map = new ObjectMapper().readValue(encodedString, Map.class);
                 user = map.get("sub").toString();
+                domain = map.get("domain").toString();
             } catch (IOException ex) {
                 log.warn("Problem during extraction of username from jwt Token", ex);
             }
