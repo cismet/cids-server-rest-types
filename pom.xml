@@ -13,7 +13,7 @@
     
     <groupId>de.cismet.cids</groupId>
     <artifactId>cids-server-rest-types</artifactId>
-    <version>8.1-SNAPSHOT</version>
+    <version>9.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>cids Server REST types</name>
