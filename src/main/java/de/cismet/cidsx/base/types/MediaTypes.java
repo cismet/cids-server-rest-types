@@ -1,10 +1,10 @@
 /***************************************************
-*
-* cismet GmbH, Saarbruecken, Germany
-*
-*              ... and it just works.
-*
-****************************************************/
+ *
+ * cismet GmbH, Saarbruecken, Germany
+ *
+ *              ... and it just works.
+ *
+ ****************************************************/
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,9 +13,7 @@
 package de.cismet.cidsx.base.types;
 
 import com.fasterxml.jackson.databind.JsonNode;
-
 import java.io.InputStream;
-
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -39,15 +37,20 @@ public class MediaTypes {
     public static final MediaType IMAGE_PNG_TYPE = MediaType.valueOf(IMAGE_PNG);
     public static final MediaType APPLICATION_X_CIDS_CLASS_ICON_TYPE = MediaType.valueOf(APPLICATION_X_CIDS_CLASS_ICON);
     public static final MediaType APPLICATION_X_CIDS_OBJECT_ICON_TYPE = MediaType.valueOf(
-            APPLICATION_X_CIDS_OBJECT_ICON);
+        APPLICATION_X_CIDS_OBJECT_ICON
+    );
     public static final MediaType APPLICATION_X_JAVA_SERIALIZED_OBJECT_TYPE = MediaType.valueOf(
-            APPLICATION_X_JAVA_SERIALIZED_OBJECT);
+        APPLICATION_X_JAVA_SERIALIZED_OBJECT
+    );
     public static final MediaType APPLICATION_X_CIDS_NODE_LEAF_ICON_TYPE = MediaType.valueOf(
-            APPLICATION_X_CIDS_NODE_LEAF_ICON);
+        APPLICATION_X_CIDS_NODE_LEAF_ICON
+    );
     public static final MediaType APPLICATION_X_CIDS_NODE_OPEN_ICON_TYPE = MediaType.valueOf(
-            APPLICATION_X_CIDS_NODE_OPEN_ICON);
+        APPLICATION_X_CIDS_NODE_OPEN_ICON
+    );
     public static final MediaType APPLICATION_X_CIDS_NODE_CLOSED_ICON_TYPE = MediaType.valueOf(
-            APPLICATION_X_CIDS_NODE_CLOSED_ICON);
+        APPLICATION_X_CIDS_NODE_CLOSED_ICON
+    );
 
     //~ Methods ----------------------------------------------------------------
 
@@ -64,11 +67,13 @@ public class MediaTypes {
             return MediaType.APPLICATION_JSON_TYPE;
         }
 
-        if (InputStream.class.isAssignableFrom(javaClass)
-                    || byte.class.isAssignableFrom(javaClass)
-                    || byte[].class.isAssignableFrom(javaClass)
-                    || Byte.class.isAssignableFrom(javaClass)
-                    || Byte[].class.isAssignableFrom(javaClass)) {
+        if (
+            InputStream.class.isAssignableFrom(javaClass) ||
+            byte.class.isAssignableFrom(javaClass) ||
+            byte[].class.isAssignableFrom(javaClass) ||
+            Byte.class.isAssignableFrom(javaClass) ||
+            Byte[].class.isAssignableFrom(javaClass)
+        ) {
             return MediaType.APPLICATION_OCTET_STREAM_TYPE;
         }
 

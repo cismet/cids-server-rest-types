@@ -1,10 +1,10 @@
 /***************************************************
-*
-* cismet GmbH, Saarbruecken, Germany
-*
-*              ... and it just works.
-*
-****************************************************/
+ *
+ * cismet GmbH, Saarbruecken, Germany
+ *
+ *              ... and it just works.
+ *
+ ****************************************************/
 package de.cismet.cidsx.server.api.types;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -16,5 +16,4 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @version  1.0
  */
 @XmlRootElement
-public class SimpleObjectQuery {
-}
+public class SimpleObjectQuery {}

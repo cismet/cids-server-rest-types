@@ -1,10 +1,10 @@
 /***************************************************
-*
-* cismet GmbH, Saarbruecken, Germany
-*
-*              ... and it just works.
-*
-****************************************************/
+ *
+ * cismet GmbH, Saarbruecken, Germany
+ *
+ *              ... and it just works.
+ *
+ ****************************************************/
 package de.cismet.cidsx.server.api.types.configkeys;
 
 import de.cismet.cidsx.base.types.Key;
@@ -15,5 +15,4 @@ import de.cismet.cidsx.base.types.Key;
  * @author   thorsten
  * @version  1.0
  */
-public interface CidsClassConfigurationFlagKey extends Key {
-}
+public interface CidsClassConfigurationFlagKey extends Key {}

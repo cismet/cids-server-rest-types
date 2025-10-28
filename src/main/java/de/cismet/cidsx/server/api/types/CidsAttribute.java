@@ -1,10 +1,10 @@
 /***************************************************
-*
-* cismet GmbH, Saarbruecken, Germany
-*
-*              ... and it just works.
-*
-****************************************************/
+ *
+ * cismet GmbH, Saarbruecken, Germany
+ *
+ *              ... and it just works.
+ *
+ ****************************************************/
 package de.cismet.cidsx.server.api.types;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -18,19 +18,14 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-
-import lombok.extern.slf4j.Slf4j;
-
+import de.cismet.cidsx.server.api.types.configkeys.CidsAttributeConfigurationFlagKey;
+import de.cismet.cidsx.server.api.types.configkeys.CidsAttributeConfigurationKey;
 import java.io.IOException;
-
 import java.math.BigDecimal;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-
-import de.cismet.cidsx.server.api.types.configkeys.CidsAttributeConfigurationFlagKey;
-import de.cismet.cidsx.server.api.types.configkeys.CidsAttributeConfigurationKey;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * cids attribute REST API Type and JSON Serializer / Deserializer Represents attribute meta data, not an actual
@@ -54,8 +49,7 @@ public class CidsAttribute {
     /**
      * Creates a new CidsAttribute object.
      */
-    public CidsAttribute() {
-    }
+    public CidsAttribute() {}
 
     /**
      * Creates an new cids attribute and initilaizes it with name and class name.
@@ -96,8 +90,7 @@ public class CidsAttribute {
      * @param  key  DOCUMENT ME!
      */
     public void setConfigFlag(final CidsAttributeConfigurationFlagKey key) {
-        configurationAttributes.put(key.toString(),
-            true);
+        configurationAttributes.put(key.toString(), true);
     }
 
     /**
@@ -118,8 +111,7 @@ public class CidsAttribute {
      * @param  value  DOCUMENT ME!
      */
     public void setConfigAttribute(final CidsAttributeConfigurationKey key, final Object value) {
-        configurationAttributes.put(key.toString(),
-            value);
+        configurationAttributes.put(key.toString(), value);
     }
 
     /**
@@ -184,10 +176,9 @@ class CidsAttributeSerializer extends StdSerializer<CidsAttribute> {
 
     @Override
     public void serialize(final CidsAttribute cidsAttribute, final JsonGenerator jg, final SerializerProvider sp)
-            throws IOException, JsonGenerationException {
+        throws IOException, JsonGenerationException {
         jg.writeStartObject();
-        jg.writeStringField("$self",
-            cidsAttribute.getAttributeKey());
+        jg.writeStringField("$self", cidsAttribute.getAttributeKey());
 
         final Set<Map.Entry<String, Object>> entrySet = cidsAttribute.configurationAttributes.entrySet();
 
@@ -197,22 +188,21 @@ class CidsAttributeSerializer extends StdSerializer<CidsAttribute> {
             if (value != null) {
                 final Class valueType = value.getClass();
                 if (Integer.class.isAssignableFrom(valueType)) {
-                    jg.writeNumberField(key, (Integer)value);
+                    jg.writeNumberField(key, (Integer) value);
                 } else if (Float.class.isAssignableFrom(valueType)) {
-                    jg.writeNumberField(key, (Float)value);
+                    jg.writeNumberField(key, (Float) value);
                 } else if (Long.class.isAssignableFrom(valueType)) {
-                    jg.writeNumberField(key, (Long)value);
+                    jg.writeNumberField(key, (Long) value);
                 } else if (Double.class.isAssignableFrom(valueType)) {
-                    jg.writeNumberField(key, (Double)value);
+                    jg.writeNumberField(key, (Double) value);
                 } else if (BigDecimal.class.isAssignableFrom(valueType)) {
-                    jg.writeNumberField(key, (BigDecimal)value);
+                    jg.writeNumberField(key, (BigDecimal) value);
                 } else if (Boolean.class.isAssignableFrom(valueType)) {
-                    jg.writeBooleanField(key, (Boolean)value);
+                    jg.writeBooleanField(key, (Boolean) value);
                 } else if (String.class.isAssignableFrom(valueType)) {
-                    jg.writeStringField(key, (String)value);
+                    jg.writeStringField(key, (String) value);
                 } else {
-                    log.warn("setting attribute '" + entry.getKey() + "' of type '"
-                                + value.getClass().getName() + "'");
+                    log.warn("setting attribute '" + entry.getKey() + "' of type '" + value.getClass().getName() + "'");
                     jg.writeObjectField(entry.getKey(), entry.getValue());
                 }
             } else {
@@ -247,8 +237,8 @@ class CidsAttributeDeserializer extends StdDeserializer<CidsAttribute> {
     //~ Methods ----------------------------------------------------------------
 
     @Override
-    public CidsAttribute deserialize(final JsonParser jp, final DeserializationContext dc) throws IOException,
-        JsonProcessingException {
+    public CidsAttribute deserialize(final JsonParser jp, final DeserializationContext dc)
+        throws IOException, JsonProcessingException {
         final CidsAttribute cidsAttribute = new CidsAttribute();
         boolean keySet = false;
 
@@ -260,40 +250,41 @@ class CidsAttributeDeserializer extends StdDeserializer<CidsAttribute> {
                 keySet = true;
             } else {
                 switch (jp.getCurrentToken()) {
-                    case VALUE_NUMBER_FLOAT: {
-                        final double d = jp.getDoubleValue();
-                        cidsAttribute.configurationAttributes.put(fieldName, d);
-                        break;
-                    }
-
-                    case VALUE_NUMBER_INT: {
-                        final int i = jp.getIntValue();
-                        cidsAttribute.configurationAttributes.put(fieldName, i);
-                        break;
-                    }
-
+                    case VALUE_NUMBER_FLOAT:
+                        {
+                            final double d = jp.getDoubleValue();
+                            cidsAttribute.configurationAttributes.put(fieldName, d);
+                            break;
+                        }
+                    case VALUE_NUMBER_INT:
+                        {
+                            final int i = jp.getIntValue();
+                            cidsAttribute.configurationAttributes.put(fieldName, i);
+                            break;
+                        }
                     case VALUE_NULL:
-                    case VALUE_TRUE: {
-                        cidsAttribute.configurationAttributes.put(fieldName, true);
-                        break;
-                    }
-
-                    case VALUE_STRING: {
-                        final String s = jp.getValueAsString();
-                        cidsAttribute.configurationAttributes.put(fieldName, s);
-                        break;
-                    }
-
-                    case VALUE_FALSE: {
-                        cidsAttribute.configurationAttributes.put(fieldName, false);
-                        break;
-                    }
-
-                    default: {
-                        log.warn("deserializing non-string attribute '" + fieldName + "'");
-                        final String s = jp.getText();
-                        cidsAttribute.configurationAttributes.put(fieldName, s);
-                    }
+                    case VALUE_TRUE:
+                        {
+                            cidsAttribute.configurationAttributes.put(fieldName, true);
+                            break;
+                        }
+                    case VALUE_STRING:
+                        {
+                            final String s = jp.getValueAsString();
+                            cidsAttribute.configurationAttributes.put(fieldName, s);
+                            break;
+                        }
+                    case VALUE_FALSE:
+                        {
+                            cidsAttribute.configurationAttributes.put(fieldName, false);
+                            break;
+                        }
+                    default:
+                        {
+                            log.warn("deserializing non-string attribute '" + fieldName + "'");
+                            final String s = jp.getText();
+                            cidsAttribute.configurationAttributes.put(fieldName, s);
+                        }
                 }
             }
         }

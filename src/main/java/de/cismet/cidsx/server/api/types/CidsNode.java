@@ -1,28 +1,24 @@
 /***************************************************
-*
-* cismet GmbH, Saarbruecken, Germany
-*
-*              ... and it just works.
-*
-****************************************************/
+ *
+ * cismet GmbH, Saarbruecken, Germany
+ *
+ *              ... and it just works.
+ *
+ ****************************************************/
 package de.cismet.cidsx.server.api.types;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
-
+import de.cismet.cidsx.base.types.Key;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import lombok.extern.slf4j.Slf4j;
-
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
-import de.cismet.cidsx.base.types.Key;
 
 /**
  * cids node REST API Type and JSON Serializer / Deserializer Configuration. Contains several legacy properties to
@@ -47,14 +43,16 @@ public class CidsNode implements Key {
      */
     @XmlTransient
     public static enum IconType implements Key {
-
         //~ Enum constants -----------------------------------------------------
 
-        LEAF_ICON("Leaf"), OPEN_ICON("Open"), CLOSED_ICON("Closed");
+        LEAF_ICON("Leaf"),
+        OPEN_ICON("Open"),
+        CLOSED_ICON("Closed");
 
         //~ Instance fields ----------------------------------------------------
 
-        @Getter private final String key;
+        @Getter
+        private final String key;
 
         //~ Constructors -------------------------------------------------------
 
@@ -71,11 +69,18 @@ public class CidsNode implements Key {
     //~ Instance fields --------------------------------------------------------
 
     /** ID is part of the Key ($self reference). No need to store it twice. */
-    @XmlTransient @JsonIgnore private String id;
+    @XmlTransient
+    @JsonIgnore
+    private String id;
+
     private String name;
     private String description;
+
     /** Domain is part of the Key ($self reference). No need to store it twice. */
-    @XmlTransient @JsonIgnore private String domain;
+    @XmlTransient
+    @JsonIgnore
+    private String domain;
+
     private String classKey = null;
     private String objectKey = null;
     private String dynamicChildren;
@@ -86,6 +91,7 @@ public class CidsNode implements Key {
     private String icon = null;
     private String cachedGeometry = null;
     private String lightweightJson = null;
+
     /**
      * DOCUMENT ME!
      *
@@ -93,7 +99,9 @@ public class CidsNode implements Key {
      */
     @JsonProperty("LEGACY_ICON_FACTORY")
     private int iconFactory;
+
     private String policy = "STANDARD";
+
     /**
      * DOCUMENT ME!
      *
@@ -145,8 +153,7 @@ public class CidsNode implements Key {
             this.domain = key.substring(1, domainSeparator);
             this.id = key.substring(domainSeparator + 1);
         } else {
-            log.error("invalid node key provided: '" + key
-                        + "', expected $self reference: '/DOMAIN.NODE_ID'");
+            log.error("invalid node key provided: '" + key + "', expected $self reference: '/DOMAIN.NODE_ID'");
             this.domain = "LOCAL";
             this.id = "-1";
         }
@@ -161,21 +168,34 @@ public class CidsNode implements Key {
      */
     public int getObjectId() {
         if (this.objectId == -1) {
-            if ((this.objectKey != null)
-                        && (this.objectKey.lastIndexOf('/') != -1)) {
+            if ((this.objectKey != null) && (this.objectKey.lastIndexOf('/') != -1)) {
                 try {
                     this.objectId = Integer.parseInt(this.objectKey.substring(this.objectKey.lastIndexOf('/') + 1));
                 } catch (Exception ex) {
-                    log.error("could not get object id from object key '" + this.objectKey
-                                + "' for node '" + this.name + "' (" + this.id + "): "
-                                + ex.getMessage(),
-                        ex);
+                    log.error(
+                        "could not get object id from object key '" +
+                        this.objectKey +
+                        "' for node '" +
+                        this.name +
+                        "' (" +
+                        this.id +
+                        "): " +
+                        ex.getMessage(),
+                        ex
+                    );
                     this.objectId = -1;
                 }
             } else {
                 if (log.isDebugEnabled()) {
-                    log.debug("could not get object id from object key '" + this.objectKey
-                                + "' for node '" + this.name + "' (" + this.id + ")");
+                    log.debug(
+                        "could not get object id from object key '" +
+                        this.objectKey +
+                        "' for node '" +
+                        this.name +
+                        "' (" +
+                        this.id +
+                        ")"
+                    );
                 }
             }
         }

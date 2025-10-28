@@ -1,19 +1,18 @@
 /***************************************************
-*
-* cismet GmbH, Saarbruecken, Germany
-*
-*              ... and it just works.
-*
-****************************************************/
+ *
+ * cismet GmbH, Saarbruecken, Germany
+ *
+ *              ... and it just works.
+ *
+ ****************************************************/
 package de.cismet.cidsx.server.api.types;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * DOCUMENT ME!
@@ -30,7 +29,9 @@ public class Reference {
 
     //~ Instance fields --------------------------------------------------------
 
-    @Getter @Setter private String $ref;
+    @Getter
+    @Setter
+    private String $ref;
 
     //~ Constructors -----------------------------------------------------------
 

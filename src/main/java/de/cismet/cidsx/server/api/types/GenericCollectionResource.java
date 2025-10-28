@@ -1,21 +1,19 @@
 /***************************************************
-*
-* cismet GmbH, Saarbruecken, Germany
-*
-*              ... and it just works.
-*
-****************************************************/
+ *
+ * cismet GmbH, Saarbruecken, Germany
+ *
+ *              ... and it just works.
+ *
+ ****************************************************/
 package de.cismet.cidsx.server.api.types;
 
+import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.util.List;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Generic Collection Resource for arbitrary $collection objects.
@@ -34,14 +32,37 @@ public class GenericCollectionResource<C> {
 
     //~ Instance fields --------------------------------------------------------
 
-    @Getter @Setter private String $self;
-    @Getter @Setter private int $offset;
-    @Getter @Setter private int $limit;
-    @Getter @Setter private String $first;
-    @Getter @Setter private String $previous;
-    @Getter @Setter private String $next;
-    @Getter @Setter private String $last;
-    @Getter @Setter private List<C> $collection;
+    @Getter
+    @Setter
+    private String $self;
+
+    @Getter
+    @Setter
+    private int $offset;
+
+    @Getter
+    @Setter
+    private int $limit;
+
+    @Getter
+    @Setter
+    private String $first;
+
+    @Getter
+    @Setter
+    private String $previous;
+
+    @Getter
+    @Setter
+    private String $next;
+
+    @Getter
+    @Setter
+    private String $last;
+
+    @Getter
+    @Setter
+    private List<C> $collection;
 
     //~ Constructors -----------------------------------------------------------
 
@@ -57,14 +78,16 @@ public class GenericCollectionResource<C> {
      * @param  $last        DOCUMENT ME!
      * @param  $collection  DOCUMENT ME!
      */
-    public GenericCollectionResource(final String $self,
-            final int $offset,
-            final int $limit,
-            final String $first,
-            final String $previous,
-            final String $next,
-            final String $last,
-            final List<C> $collection) {
+    public GenericCollectionResource(
+        final String $self,
+        final int $offset,
+        final int $limit,
+        final String $first,
+        final String $previous,
+        final String $next,
+        final String $last,
+        final List<C> $collection
+    ) {
         this.$self = $self;
         this.$offset = $offset;
         this.$limit = $limit;

@@ -1,35 +1,27 @@
 /***************************************************
-*
-* cismet GmbH, Saarbruecken, Germany
-*
-*              ... and it just works.
-*
-****************************************************/
+ *
+ * cismet GmbH, Saarbruecken, Germany
+ *
+ *              ... and it just works.
+ *
+ ****************************************************/
 package de.cismet.cidsx.server.api.types;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.sun.jersey.core.util.Base64;
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NonNull;
-
-import lombok.extern.slf4j.Slf4j;
-
-import org.mindrot.jbcrypt.BCrypt;
-
 import java.io.IOException;
-
 import java.nio.charset.StandardCharsets;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
-
 import javax.xml.bind.annotation.XmlRootElement;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  * DOCUMENT ME!
@@ -55,18 +47,22 @@ public class User {
     private String domain = "local"; // NOI18N;
     private String jwt;
     private String passHash;
-    @NonNull private Collection<String> userGroups = new ArrayList<String>();
 
-    @JsonIgnore private String pass;
-    @JsonIgnore private boolean validated;
+    @NonNull
+    private Collection<String> userGroups = new ArrayList<String>();
+
+    @JsonIgnore
+    private String pass;
+
+    @JsonIgnore
+    private boolean validated;
 
     //~ Constructors -----------------------------------------------------------
 
     /**
      * Creates a new User object.
      */
-    public User() {
-    }
+    public User() {}
 
     /**
      * Creates a new User object from an authString of format 'username[@domain]'.
@@ -79,9 +75,9 @@ public class User {
         if (authString.startsWith(BASIC_AUTH_PREFIX)) {
             final String token = new String(Base64.decode(authString.substring(BASIC_AUTH_PREFIX.length())));
             if (token.contains(":")) {
-                final String[] parts = token.split(":");          // NOI18N
+                final String[] parts = token.split(":"); // NOI18N
                 final String login = parts[0];
-                if (login.contains("@")) {                        // NOI18N
+                if (login.contains("@")) { // NOI18N
                     final String[] loginParts = login.split("@"); // NOI18N
                     if (loginParts.length == 2) {
                         domain = loginParts[1];
@@ -109,8 +105,9 @@ public class User {
                     paddedPayload = paddedPayload + "=";
                 }
 
-                final String encodedString = new String(Base64.decode(
-                            (paddedPayload).getBytes(StandardCharsets.UTF_8)));
+                final String encodedString = new String(
+                    Base64.decode((paddedPayload).getBytes(StandardCharsets.UTF_8))
+                );
                 final Map map = new ObjectMapper().readValue(encodedString, Map.class);
                 user = map.get("sub").toString();
                 domain = map.get("domain").toString();

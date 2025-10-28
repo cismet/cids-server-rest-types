@@ -1,25 +1,20 @@
 /***************************************************
-*
-* cismet GmbH, Saarbruecken, Germany
-*
-*              ... and it just works.
-*
-****************************************************/
+ *
+ * cismet GmbH, Saarbruecken, Germany
+ *
+ *              ... and it just works.
+ *
+ ****************************************************/
 package de.cismet.cidsx.server.api.types;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import de.cismet.cidsx.base.types.Key;
+import java.io.Serializable;
+import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
-
-import java.util.List;
-
-import javax.xml.bind.annotation.XmlRootElement;
-
-import de.cismet.cidsx.base.types.Key;
 
 /**
  * Provides information on server searches.

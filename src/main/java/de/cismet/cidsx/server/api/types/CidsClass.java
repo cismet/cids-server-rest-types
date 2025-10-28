@@ -1,10 +1,10 @@
 /***************************************************
-*
-* cismet GmbH, Saarbruecken, Germany
-*
-*              ... and it just works.
-*
-****************************************************/
+ *
+ * cismet GmbH, Saarbruecken, Germany
+ *
+ *              ... and it just works.
+ *
+ ****************************************************/
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -24,21 +24,16 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-
-import lombok.extern.slf4j.Slf4j;
-
+import de.cismet.cidsx.base.types.Key;
+import de.cismet.cidsx.server.api.types.configkeys.CidsClassConfigurationFlagKey;
+import de.cismet.cidsx.server.api.types.configkeys.CidsClassConfigurationKey;
+import de.cismet.cidsx.server.api.types.configkeys.ClassConfig;
 import java.io.IOException;
-
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-
-import de.cismet.cidsx.base.types.Key;
-
-import de.cismet.cidsx.server.api.types.configkeys.CidsClassConfigurationFlagKey;
-import de.cismet.cidsx.server.api.types.configkeys.CidsClassConfigurationKey;
-import de.cismet.cidsx.server.api.types.configkeys.ClassConfig;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * cids class REST API Type and JSON Serializer / Deserializer.
@@ -64,8 +59,7 @@ public class CidsClass implements Key {
     /**
      * Creates a new CidsClass object.
      */
-    public CidsClass() {
-    }
+    public CidsClass() {}
 
     /**
      * Creates a new CidsClass object.
@@ -95,8 +89,7 @@ public class CidsClass implements Key {
             // final String domain = classKey.substring(1, domainSeparator);
             name = classKey.substring(domainSeparator + 1);
         } else {
-            log.error("invalid class key provided: '" + classKey
-                        + "', expected $self reference: '/DOMAIN.CLASSNAME'");
+            log.error("invalid class key provided: '" + classKey + "', expected $self reference: '/DOMAIN.CLASSNAME'");
             name = null;
         }
 
@@ -121,8 +114,7 @@ public class CidsClass implements Key {
                 domain = classKey.substring(0, domainSeparator);
             }
         } else {
-            log.error("invalid class key provided: '" + classKey
-                        + "', expected $self reference: '/DOMAIN.CLASSNAME'");
+            log.error("invalid class key provided: '" + classKey + "', expected $self reference: '/DOMAIN.CLASSNAME'");
             domain = null;
         }
 
@@ -135,8 +127,7 @@ public class CidsClass implements Key {
      * @param  attr  DOCUMENT ME!
      */
     public void putAttribute(final CidsAttribute attr) {
-        attributes.put(attr.getAttributeKey(),
-            attr);
+        attributes.put(attr.getAttributeKey(), attr);
     }
 
     /**
@@ -168,8 +159,7 @@ public class CidsClass implements Key {
      * @param  key  DOCUMENT ME!
      */
     public void setConfigFlag(final CidsClassConfigurationFlagKey key) {
-        configurationAttributes.put(key.toString(),
-            true);
+        configurationAttributes.put(key.toString(), true);
     }
 
     /**
@@ -194,8 +184,7 @@ public class CidsClass implements Key {
         // ATTENTION: name.toString() returns the NAME of the ENUM, not the value of the
         // name, e.g. NAME( "Name" ) -> JSON property names are uppercase.
         // This allows for reconstructing the ENUM from the JSON property name.
-        configurationAttributes.put(key.toString(),
-            value);
+        configurationAttributes.put(key.toString(), value);
     }
 
     /**
@@ -314,7 +303,7 @@ class CidsClassSerializer extends StdSerializer<CidsClass> {
 
     @Override
     public void serialize(final CidsClass cidsClass, final JsonGenerator jg, final SerializerProvider provider)
-            throws IOException, JsonGenerationException {
+        throws IOException, JsonGenerationException {
         jg.writeStartObject();
         jg.writeStringField("$self", cidsClass.getKey());
         // ------ Config
@@ -324,8 +313,7 @@ class CidsClassSerializer extends StdSerializer<CidsClass> {
         final Set<Map.Entry<String, Object>> configAttributesSet = cidsClass.getConfigurationAttributes().entrySet();
 
         for (final Map.Entry<String, Object> entry : configAttributesSet) {
-            jg.writeObjectField(entry.getKey(),
-                entry.getValue());
+            jg.writeObjectField(entry.getKey(), entry.getValue());
         }
 
         jg.writeEndObject();
@@ -338,8 +326,7 @@ class CidsClassSerializer extends StdSerializer<CidsClass> {
             jg.writeStartObject();
 
             for (final Map.Entry<String, CidsAttribute> attr : attributesSet) {
-                jg.writeObjectField(attr.getValue().name,
-                    attr.getValue());
+                jg.writeObjectField(attr.getValue().name, attr.getValue());
             }
 
             jg.writeEndObject();
@@ -373,8 +360,8 @@ class CidsClassDeserializer extends StdDeserializer<CidsClass> {
     //~ Methods ----------------------------------------------------------------
 
     @Override
-    public CidsClass deserialize(final JsonParser jp, final DeserializationContext ctxt) throws IOException,
-        JsonProcessingException {
+    public CidsClass deserialize(final JsonParser jp, final DeserializationContext ctxt)
+        throws IOException, JsonProcessingException {
         final CidsClass cidsClass = new CidsClass();
 
         final ObjectNode rootNode = jp.readValueAsTree();
@@ -382,7 +369,7 @@ class CidsClassDeserializer extends StdDeserializer<CidsClass> {
         final ObjectMapper mapper = new ObjectMapper();
 
         // 1st process the configuration attributes (class atributes)
-        final ObjectNode configurationNodes = (ObjectNode)rootNode.get("configuration");
+        final ObjectNode configurationNodes = (ObjectNode) rootNode.get("configuration");
         final Iterator<Map.Entry<String, JsonNode>> configurationElements = configurationNodes.fields();
         while (configurationElements.hasNext()) {
             final Map.Entry<String, JsonNode> configEntry = configurationElements.next();
@@ -399,14 +386,20 @@ class CidsClassDeserializer extends StdDeserializer<CidsClass> {
                 // final Image image = this.deserializeSiriusImage(configKey, configNode);
                 cidsClass.getConfigurationAttributes().put(configKey, configNode);
             } else if (configNode.isArray()) {
-                log.warn("unexpected JSON configuration Attribute array. expecting string value for node '" + configKey
-                            + "', ignoring node!");
+                log.warn(
+                    "unexpected JSON configuration Attribute array. expecting string value for node '" +
+                    configKey +
+                    "', ignoring node!"
+                );
                 final Object value = mapper.treeToValue(configNode, Object.class);
                 cidsClass.getConfigurationAttributes().put(configKey, value);
             } else if (configNode.isObject()) {
-                log.warn("unexpected JSON configuration Attribute object node. Expecting string value for node '"
-                            + configKey
-                            + "' but actual value is: \n" + configNode.toString());
+                log.warn(
+                    "unexpected JSON configuration Attribute object node. Expecting string value for node '" +
+                    configKey +
+                    "' but actual value is: \n" +
+                    configNode.toString()
+                );
                 final Object value = mapper.treeToValue(configNode, Object.class);
                 cidsClass.getConfigurationAttributes().put(configKey, value);
             } else if (configNode.isTextual()) {
@@ -422,15 +415,16 @@ class CidsClassDeserializer extends StdDeserializer<CidsClass> {
             } else if (configNode.isBoolean()) {
                 cidsClass.getConfigurationAttributes().put(configKey, configNode.booleanValue());
             } else {
-                log.warn("unknown type of JSON configuration Attribute '" + configKey
-                            + "': \n" + configNode.toString());
+                log.warn(
+                    "unknown type of JSON configuration Attribute '" + configKey + "': \n" + configNode.toString()
+                );
                 final Object value = mapper.treeToValue(configNode, Object.class);
                 cidsClass.getConfigurationAttributes().put(configKey, value);
             }
         }
 
         // 2nd process the instance attributes
-        final JsonNode attributeNodes = (ObjectNode)rootNode.get("attributes");
+        final JsonNode attributeNodes = (ObjectNode) rootNode.get("attributes");
         final Iterator<JsonNode> attributesElements = attributeNodes.elements();
         while (attributesElements.hasNext()) {
             final JsonNode attributeNode = attributesElements.next();

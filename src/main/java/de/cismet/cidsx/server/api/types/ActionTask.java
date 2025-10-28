@@ -1,21 +1,19 @@
 /***************************************************
-*
-* cismet GmbH, Saarbruecken, Germany
-*
-*              ... and it just works.
-*
-****************************************************/
+ *
+ * cismet GmbH, Saarbruecken, Germany
+ *
+ *              ... and it just works.
+ *
+ ****************************************************/
 package de.cismet.cidsx.server.api.types;
 
+import de.cismet.cidsx.base.types.Key;
+import java.util.Map;
+import javax.xml.bind.annotation.XmlRootElement;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Map;
-
-import javax.xml.bind.annotation.XmlRootElement;
-
-import de.cismet.cidsx.base.types.Key;
 /**
  * DOCUMENT ME!
  *
@@ -36,10 +34,13 @@ public class ActionTask implements Key {
      * @version  1.0
      */
     public enum Status {
-
         //~ Enum constants -----------------------------------------------------
 
-        STARTING, RUNNING, CANCELING, FINISHED, ERROR
+        STARTING,
+        RUNNING,
+        CANCELING,
+        FINISHED,
+        ERROR,
     }
 
     //~ Instance fields --------------------------------------------------------
