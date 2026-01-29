@@ -13,8 +13,8 @@
 package de.cismet.cidsx.base.types;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import java.io.InputStream;
 import jakarta.ws.rs.core.MediaType;
+import java.io.InputStream;
 
 /**
  * Commonly used (cids) Media Types that complement the default MediaTypes of javax.ws.rs.core.MediaType.

@@ -73,7 +73,9 @@ public class User {
      */
     public User(@NonNull final String authString) {
         if (authString.startsWith(BASIC_AUTH_PREFIX)) {
-            final String token = new String(Base64.getDecoder().decode(authString.substring(BASIC_AUTH_PREFIX.length())));
+            final String token = new String(
+                Base64.getDecoder().decode(authString.substring(BASIC_AUTH_PREFIX.length()))
+            );
             if (token.contains(":")) {
                 final String[] parts = token.split(":"); // NOI18N
                 final String login = parts[0];
