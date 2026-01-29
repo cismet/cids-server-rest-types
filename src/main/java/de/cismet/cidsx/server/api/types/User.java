@@ -9,11 +9,11 @@ package de.cismet.cidsx.server.api.types;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.jersey.core.util.Base64;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Map;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -73,7 +73,7 @@ public class User {
      */
     public User(@NonNull final String authString) {
         if (authString.startsWith(BASIC_AUTH_PREFIX)) {
-            final String token = new String(Base64.decode(authString.substring(BASIC_AUTH_PREFIX.length())));
+            final String token = new String(Base64.getDecoder().decode(authString.substring(BASIC_AUTH_PREFIX.length())));
             if (token.contains(":")) {
                 final String[] parts = token.split(":"); // NOI18N
                 final String login = parts[0];
@@ -106,7 +106,7 @@ public class User {
                 }
 
                 final String encodedString = new String(
-                    Base64.decode((paddedPayload).getBytes(StandardCharsets.UTF_8))
+                    Base64.getDecoder().decode((paddedPayload).getBytes(StandardCharsets.UTF_8))
                 );
                 final Map map = new ObjectMapper().readValue(encodedString, Map.class);
                 user = map.get("sub").toString();
