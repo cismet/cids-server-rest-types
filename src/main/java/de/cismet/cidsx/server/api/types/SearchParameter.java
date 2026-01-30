@@ -8,7 +8,10 @@
 package de.cismet.cidsx.server.api.types;
 
 import de.cismet.cidsx.base.types.Key;
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,13 +26,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@XmlAccessorType(XmlAccessType.FIELD)
 public class SearchParameter implements Key {
 
     //~ Instance fields --------------------------------------------------------
 
     /** Name of the parameter. */
+    @XmlElement
     private String key;
 
     /** Value of the parameter. Object type to support Jackson serialization / deserialization */
+    @XmlElement
     private Object value;
 }

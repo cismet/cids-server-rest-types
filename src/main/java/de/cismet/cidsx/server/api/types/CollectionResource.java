@@ -7,8 +7,8 @@
  ****************************************************/
 package de.cismet.cidsx.server.api.types;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
 import java.util.List;
-import javax.xml.bind.annotation.XmlRootElement;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -13,11 +13,9 @@
 package de.cismet.cidsx.server.api.types;
 
 import de.cismet.cidsx.base.types.Key;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
-import javax.xml.bind.annotation.XmlRootElement;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 

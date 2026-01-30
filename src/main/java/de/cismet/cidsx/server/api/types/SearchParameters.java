@@ -7,8 +7,9 @@
  ****************************************************/
 package de.cismet.cidsx.server.api.types;
 
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import java.util.List;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * DOCUMENT ME!
@@ -21,6 +22,7 @@ public class SearchParameters {
 
     //~ Instance fields --------------------------------------------------------
 
+    @XmlElement(name = "parameter")
     private List<SearchParameter> list;
 
     //~ Methods ----------------------------------------------------------------
